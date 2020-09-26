@@ -19,29 +19,29 @@ import torch.optim as optim
 import yaml
 from tensorboardX import SummaryWriter
 from torch.autograd import Variable
-from torch.optim.lr_scheduler import _LRScheduler
+#from torch.optim.lr_scheduler import _LRScheduler
 from tqdm import tqdm
 
 
-class GradualWarmupScheduler(_LRScheduler):
-    def __init__(self, optimizer, total_epoch, after_scheduler=None):
-        self.total_epoch = total_epoch
-        self.after_scheduler = after_scheduler
-        self.finished = False
-        self.last_epoch = -1
-        super().__init__(optimizer)
-
-    def get_lr(self):
-        return [base_lr * (self.last_epoch + 1) / self.total_epoch for base_lr in self.base_lrs]
-
-    def step(self, epoch=None, metric=None):
-        if self.last_epoch >= self.total_epoch - 1:
-            if metric is None:
-                return self.after_scheduler.step(epoch)
-            else:
-                return self.after_scheduler.step(metric, epoch)
-        else:
-            return super(GradualWarmupScheduler, self).step(epoch)
+# class GradualWarmupScheduler(_LRScheduler):
+#     def __init__(self, optimizer, total_epoch, after_scheduler=None):
+#         self.total_epoch = total_epoch
+#         self.after_scheduler = after_scheduler
+#         self.finished = False
+#         self.last_epoch = -1
+#         super().__init__(optimizer)
+#
+#     def get_lr(self):
+#         return [base_lr * (self.last_epoch + 1) / self.total_epoch for base_lr in self.base_lrs]
+#
+#     def step(self, epoch=None, metric=None):
+#         if self.last_epoch >= self.total_epoch - 1:
+#             if metric is None:
+#                 return self.after_scheduler.step(epoch)
+#             else:
+#                 return self.after_scheduler.step(metric, epoch)
+#         else:
+#             return super(GradualWarmupScheduler, self).step(epoch)
 
 
 def init_seed(_):
@@ -278,12 +278,12 @@ class Processor():
                 state.update(weights)
                 self.model.load_state_dict(state)
 
-        if type(self.arg.device) is list:
-            if len(self.arg.device) > 1:
-                self.model = nn.DataParallel(
-                    self.model,
-                    device_ids=self.arg.device,
-                    output_device=output_device)
+        # if type(self.arg.device) is list:
+        #     if len(self.arg.device) > 1:
+        #         self.model = nn.DataParallel(
+        #             self.model,
+        #             device_ids=self.arg.device,
+        #             output_device=output_device)
 
     def load_optimizer(self):
         if self.arg.optimizer == 'SGD':
@@ -304,9 +304,9 @@ class Processor():
         lr_scheduler_pre = optim.lr_scheduler.MultiStepLR(
             self.optimizer, milestones=self.arg.step, gamma=0.1)
 
-        self.lr_scheduler = GradualWarmupScheduler(self.optimizer, total_epoch=self.arg.warm_up_epoch,
-                                                   after_scheduler=lr_scheduler_pre)
-        self.print_log('using warm up, epoch: {}'.format(self.arg.warm_up_epoch))
+        # self.lr_scheduler = GradualWarmupScheduler(self.optimizer, total_epoch=self.arg.warm_up_epoch,
+        #                                            after_scheduler=lr_scheduler_pre)
+        # self.print_log('using warm up, epoch: {}'.format(self.arg.warm_up_epoch))
 
     def save_arg(self):
         # save arg
