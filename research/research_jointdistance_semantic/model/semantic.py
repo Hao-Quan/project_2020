@@ -129,22 +129,6 @@ class TCN_GCN_unit(nn.Module):
         x = self.tcn1(self.gcn1(x)) + self.residual(x)
         return self.relu(x)
 
-
-
-
-class norm_data(nn.Module):
-    def __init__(self, dim= 64):
-        super(norm_data, self).__init__()
-
-        self.bn = nn.BatchNorm1d(dim* 25)
-
-    def forward(self, x):
-        bs, c, num_joints, step = x.size()
-        x = x.view(bs, -1, step)
-        x = self.bn(x)
-        x = x.view(bs, -1, num_joints, step).contiguous()
-        return x
-
 class embed(nn.Module):
     def __init__(self, dim = 3, dim1 = 128, norm = True, bias = False):
         super(embed, self).__init__()
@@ -235,10 +219,10 @@ class compute_g_spa(nn.Module):
         g = self.softmax(g3)
         return g
 
-if __name__ == '__main__':
-
-    model = SGN(num_classes=60, dataset='ntu', seg=20, args=None, bias = True)
-    print(model)
+# if __name__ == '__main__':
+#
+#     model = SGN(num_classes=60, dataset='ntu', seg=20, args=None, bias = True)
+#     print(model)
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 from torch import nn
@@ -319,17 +303,18 @@ class norm_data(nn.Module):
     def __init__(self, dim= 64):
         super(norm_data, self).__init__()
 
-        self.bn = nn.BatchNorm1d(dim* 25)
+        #self.bn = nn.BatchNorm1d(dim* 25)
+        self.bn = nn.BatchNorm1d(dim * 25 * 2)
 
     def forward(self, x):
-        bs, c, num_joints, step = x.size()
+        bs, c, num_joints, step, h = x.size()
         x = x.view(bs, -1, step)
         x = self.bn(x)
         x = x.view(bs, -1, num_joints, step).contiguous()
         return x
 
 class embed(nn.Module):
-    def __init__(self, dim = 3, dim1 = 128, norm = True, bias = False):
+    def __init__(self, dim = 3, dim1 = 128, norm = False, bias = False):
         super(embed, self).__init__()
 
         if norm:
@@ -473,14 +458,34 @@ class compute_g_spa(nn.Module):
 
 
 class Model(nn.Module):
-    def __init__(self, num_class, num_point, num_person, graph, graph_args, bias=True):
+    def __init__(self, num_class, num_point, num_person, graph, graph_args, batch_size, bias=True):
         super(Model, self).__init__()
 
         self.dim1 = 256
-        #self.seg = seg
+        #self.dataset = dataset
+        self.seg = 1
         num_joint = 25
         #bs = args.batch_size
+        N = batch_size
+        M = 2
+        T = 300
+        #if args.train:
+        self.spa = self.one_hot(N*M, num_joint, self.seg*T)
+        self.spa = self.spa.permute(0, 3, 2, 1).cuda()
+        self.tem = self.one_hot(N*M, self.seg, num_joint)
+        self.tem = self.tem.permute(0, 3, 1, 2).cuda()
+        # else:
+        #     self.spa = self.one_hot(32 * 5, num_joint, self.seg)
+        #     self.spa = self.spa.permute(0, 3, 2, 1).cuda()
+        #     self.tem = self.one_hot(32 * 5, self.seg, num_joint)
+        #     self.tem = self.tem.permute(0, 3, 1, 2).cuda()
 
+        self.tem_embed = embed(self.seg, 64 * 4, norm=False, bias=bias)
+        self.spa_embed = embed(num_joint, 64, norm=False, bias=bias)
+        self.joint_embed = embed(3, 64, norm=False, bias=bias)
+        self.dif_embed = embed(3, 64, norm=False, bias=bias)
+        self.maxpool = nn.AdaptiveMaxPool2d((1, 1))
+        self.cnn = local(self.dim1, self.dim1 * 2, bias=bias)
         self.compute_g1 = compute_g_spa(self.dim1 // 2, self.dim1, bias=bias)
         self.gcn1 = gcn_spa(self.dim1 // 2, self.dim1 // 2, bias=bias)
         self.gcn2 = gcn_spa(self.dim1 // 2, self.dim1, bias=bias)
@@ -500,12 +505,17 @@ class Model(nn.Module):
 
         # Dynamic Representation
         #bs, step, dim = input.size()
-        bs, dim, step, num_joints, _ = input.size()
+        #bs, dim, step, num_joints, h = input.size()
+        N, C, T, V, M = input.size()
+
         #num_joints = dim // 3
-        input = input.view((bs, step, num_joints, 3))
+        #input = input.view((bs, step, num_joints, dim, h))
+        input = input.view(N*M, T, V, C)
+        #input = input.permute(0, 3, 2, 1, 4).contiguous()
         input = input.permute(0, 3, 2, 1).contiguous()
         dif = input[:, :, :, 1:] - input[:, :, :, 0:-1]
-        dif = torch.cat([dif.new(bs, dif.size(1), num_joints, 1).zero_(), dif], dim=-1)
+        dif = torch.cat([dif.new(N*M, dif.size(1), V, 1).zero_(), dif], dim=-1)
+        #should be: dif.new(bs, dif.size(1), num_joints, step-1, h).zero_()
         pos = self.joint_embed(input)
         tem1 = self.tem_embed(self.tem)
         spa1 = self.spa_embed(self.spa)
@@ -521,9 +531,11 @@ class Model(nn.Module):
         input = input + tem1
         input = self.cnn(input)
         # Classification
-        output = self.maxpool(input)
-        output = torch.flatten(output, 1)
-        output = self.fc(output)
+        output = self.maxpool(input)    # output (2, 512, 1, 1)  input (2, 512, 1, 20)
+        output = torch.flatten(output, 1) # output (2, 512)   input (2, 512, 1, 1)
+        output = output.view(N, output.size(1), M)
+        output = output.mean(2)
+        output = self.fc(output) # output (2, 60)   input (2, 512)
 
         return output
 
@@ -539,4 +551,3 @@ class Model(nn.Module):
         y_onehot = y_onehot.repeat(bs, tem, 1, 1)
 
         return y_onehot
-

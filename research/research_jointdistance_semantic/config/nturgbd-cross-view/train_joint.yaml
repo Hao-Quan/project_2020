@@ -29,6 +29,7 @@ model_args:
   graph: graph.ntu_rgb_d.Graph
   graph_args:
     labeling_mode: 'spatial'
+  batch_size: 1
 
 #optim
 weight_decay: 0.0001
