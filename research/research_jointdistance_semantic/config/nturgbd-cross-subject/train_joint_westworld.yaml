@@ -5,16 +5,15 @@ feeder: feeders.feeder.Feeder
 train_feeder_args:
 #  data_path: ./data/ntu/xsub/train_data_joint.npy
 #  label_path: ./data/ntu/xsub/train_label.pkl
-
-  data_path: ./data/ntu_light/xsub/train_data_joint.npy
-  label_path: ./data/ntu_light/xsub/train_label.pkl
+#  data_path: ./data/ntu_light/xsub/train_data_joint.npy
+#  label_path: ./data/ntu_light/xsub/train_label.pkl
 
 #  data_path: ./data/ntu_light/xsub/joint_distance/train_data_joint.npy
 #  label_path: ./data/ntu_light/xsub/joint_distance/train_label.pkl
 
   # Westworld
-#  data_path: ./data/ntu_light/xsub/train_data_joint.npy
-#  label_path: ./data/ntu_light/xsub/train_label.pkl
+  data_path: /data/ntu/xsub/train_data_joint.npy
+  label_path: /data/ntu/xsub/train_label.pkl
 
   debug: False
   random_choose: False
@@ -26,13 +25,12 @@ train_feeder_args:
 test_feeder_args:
 #  data_path: ./data/ntu/xsub/val_data_joint.npy
 #  label_path: ./data/ntu/xsub/val_label.pkl
-
-  data_path: ./data/ntu_light/xsub/val_data_joint.npy
-  label_path: ./data/ntu_light/xsub/val_label.pkl
+#  data_path: ./data/ntu_light/xsub/val_data_joint.npy
+#  label_path: ./data/ntu_light/xsub/val_label.pkl
 
   # Westworld
-#  data_path: /data/ntu/xsub/val_data_joint.npy
-#  label_path: /data/ntu/xsub/val_label.pkl
+  data_path: /data/ntu/xsub/val_data_joint.npy
+  label_path: /data/ntu/xsub/val_label.pkl
 
 # model
 model: model.semantic.Model
@@ -50,10 +48,10 @@ base_lr: 0.1
 step: [30, 40]
 
 # training
-device: [0]
-batch_size: 4
-test_batch_size: 2
-num_epoch: 2
+device: [0,1]
+batch_size: 64
+test_batch_size: 64
+num_epoch: 1
 nesterov: True
 
 save_score: True

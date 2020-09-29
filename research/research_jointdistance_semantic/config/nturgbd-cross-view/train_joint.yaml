@@ -1,12 +1,20 @@
-work_dir: ./work_dir/ntu/xview/agcn_joint
-model_saved_name: ./runs/ntu_cv_agcn_joint
+work_dir: ./work_dir/ntu/xview/semantic_distance
+model_saved_name: ./runs/ntu_cs_semantic_distance
 # feeder
 feeder: feeders.feeder.Feeder
 train_feeder_args:
 #  data_path: ./data/ntu/xview/train_data_joint.npy
 #  label_path: ./data/ntu/xview/train_label.pkl
-  data_path: ./data/ntu_light/xview/train_data_joint.npy
-  label_path: ./data/ntu_light/xview/train_label.pkl
+#  data_path: ./data/ntu_light/xview/train_data_joint.npy
+#  label_path: ./data/ntu_light/xview/train_label.pkl
+
+#  data_path: ./data/ntu_light/xview/joint_distance/train_data_joint.npy
+#  label_path: ./data/ntu_light/xview/joint_distance/train_label.pkl
+
+  # Westworld
+  data_path: /data/ntu/xview/train_data_joint.npy
+  label_path: /data/ntu/xview/train_label.pkl
+
   debug: False
   random_choose: False
   random_shift: False
@@ -17,8 +25,12 @@ train_feeder_args:
 test_feeder_args:
 #  data_path: ./data/ntu/xview/val_data_joint.npy
 #  label_path: ./data/ntu/xview/val_label.pkl
-  data_path: ./data/ntu_light/xview/val_data_joint.npy
-  label_path: ./data/ntu_light/xview/val_label.pkl
+#  data_path: ./data/ntu_light/xview/val_data_joint.npy
+#  label_path: ./data/ntu_light/xview/val_label.pkl
+
+  # Westworld
+  data_path: /data/ntu/xview/val_data_joint.npy
+  label_path: /data/ntu/xview/val_label.pkl
 
 # model
 model: model.semantic.Model

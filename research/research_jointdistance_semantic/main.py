@@ -21,6 +21,7 @@ from tensorboardX import SummaryWriter
 from torch.autograd import Variable
 #from torch.optim.lr_scheduler import _LRScheduler
 from tqdm import tqdm
+import pickle as pkl
 
 
 # class GradualWarmupScheduler(_LRScheduler):
@@ -269,6 +270,7 @@ class Processor():
 
             try:
                 self.model.load_state_dict(weights)
+                self.model.load_state_dict(weights)
             except:
                 state = self.model.state_dict()
                 diff = list(set(state.keys()).difference(set(weights.keys())))
@@ -278,12 +280,12 @@ class Processor():
                 state.update(weights)
                 self.model.load_state_dict(state)
 
-        # if type(self.arg.device) is list:
-        #     if len(self.arg.device) > 1:
-        #         self.model = nn.DataParallel(
-        #             self.model,
-        #             device_ids=self.arg.device,
-        #             output_device=output_device)
+        if type(self.arg.device) is list:
+            if len(self.arg.device) > 1:
+                self.model = nn.DataParallel(
+                    self.model,
+                    device_ids=self.arg.device,
+                    output_device=output_device)
 
     def load_optimizer(self):
         if self.arg.optimizer == 'SGD':
@@ -435,31 +437,100 @@ class Processor():
 
             torch.save(weights, self.arg.model_saved_name + '-' + str(epoch) + '-' + str(int(self.global_step)) + '.pt')
 
-    def eval(self, epoch, save_score=False, loader_name=['test'], wrong_file=None, result_file=None):
+
+    # def eval(self, epoch, save_score=False, loader_name=['test'], wrong_file=None, result_file=None):
+    #     if wrong_file is not None:
+    #         f_w = open(wrong_file, 'w')
+    #     if result_file is not None:
+    #         f_r = open(result_file, 'w')
+    #     self.model.eval()
+    #     self.print_log('Eval epoch: {}'.format(epoch + 1))
+    #     for ln in loader_name:
+    #         loss_value = []
+    #         score_frag = []
+    #         right_num_total = 0
+    #         total_num = 0
+    #         loss_total = 0
+    #         step = 0
+    #         process = tqdm(self.data_loader[ln])
+    #         for batch_idx, (data, label, index) in enumerate(process):
+    #             with torch.no_grad():
+    #                 data = Variable(
+    #                     data.float().cuda(self.output_device),
+    #                     requires_grad=False,
+    #                     volatile=True)
+    #                 label = Variable(
+    #                     label.long().cuda(self.output_device),
+    #                     requires_grad=False,
+    #                     volatile=True)
+    #                 output = self.model(data)
+    #                 if isinstance(output, tuple):
+    #                     output, l1 = output
+    #                     l1 = l1.mean()
+    #                 else:
+    #                     l1 = 0
+    #                 loss = self.loss(output, label)
+    #                 score_frag.append(output.data.cpu().numpy())
+    #                 loss_value.append(loss.data.item())
+    #
+    #                 _, predict_label = torch.max(output.data, 1)
+    #                 step += 1
+    #
+    #             if wrong_file is not None or result_file is not None:
+    #                 predict = list(predict_label.cpu().numpy())
+    #                 true = list(label.data.cpu().numpy())
+    #                 for i, x in enumerate(predict):
+    #                     if result_file is not None:
+    #                         f_r.write(str(x) + ',' + str(true[i]) + '\n')
+    #                     if x != true[i] and wrong_file is not None:
+    #                         f_w.write(str(index[i]) + ',' + str(x) + ',' + str(true[i]) + '\n')
+    #         score = np.concatenate(score_frag)
+    #         loss = np.mean(loss_value)
+    #         accuracy = self.data_loader[ln].dataset.top_k(score, 1)
+    #         if accuracy > self.best_acc:
+    #             self.best_acc = accuracy
+    #         # self.lr_scheduler.step(loss)
+    #         print('Accuracy: ', accuracy, ' model: ', self.arg.model_saved_name)
+    #         if self.arg.phase == 'train':
+    #             self.val_writer.add_scalar('loss', loss, self.global_step)
+    #             self.val_writer.add_scalar('loss_l1', l1, self.global_step)
+    #             self.val_writer.add_scalar('acc', accuracy, self.global_step)
+    #
+    #         score_dict = dict(
+    #             zip(self.data_loader[ln].dataset.sample_name, score))
+    #         self.print_log('\tMean {} loss of {} batches: {}.'.format(
+    #             ln, len(self.data_loader[ln]), np.mean(loss_value)))
+    #         for k in self.arg.show_topk:
+    #             self.print_log('\tTop{}: {:.2f}%'.format(
+    #                 k, 100 * self.data_loader[ln].dataset.top_k(score, k)))
+    #
+    #         if save_score:
+    #             with open('{}/epoch{}_{}_score.pkl'.format(
+    #                     self.arg.work_dir, epoch + 1, ln), 'wb') as f:
+    #                 pickle.dump(score_dict, f)
+
+    def eval(self, epoch, save_score=True, loader_name=['test'], wrong_file=None, result_file=None):
+        # Skip evaluation if too early
+        self.arg.eval_start = 1
+        if epoch + 1 < self.arg.eval_start:
+            return
+
         if wrong_file is not None:
             f_w = open(wrong_file, 'w')
         if result_file is not None:
             f_r = open(result_file, 'w')
-        self.model.eval()
-        self.print_log('Eval epoch: {}'.format(epoch + 1))
-        for ln in loader_name:
-            loss_value = []
-            score_frag = []
-            right_num_total = 0
-            total_num = 0
-            loss_total = 0
-            step = 0
-            process = tqdm(self.data_loader[ln])
-            for batch_idx, (data, label, index) in enumerate(process):
-                with torch.no_grad():
-                    data = Variable(
-                        data.float().cuda(self.output_device),
-                        requires_grad=False,
-                        volatile=True)
-                    label = Variable(
-                        label.long().cuda(self.output_device),
-                        requires_grad=False,
-                        volatile=True)
+        with torch.no_grad():
+            self.model = self.model.cuda(self.output_device)
+            self.model.eval()
+            self.print_log(f'Eval epoch: {epoch + 1}')
+            for ln in loader_name:
+                loss_values = []
+                score_batches = []
+                step = 0
+                process = tqdm(self.data_loader[ln], dynamic_ncols=True)
+                for batch_idx, (data, label, index) in enumerate(process):
+                    data = data.float().cuda(self.output_device)
+                    label = label.long().cuda(self.output_device)
                     output = self.model(data)
                     if isinstance(output, tuple):
                         output, l1 = output
@@ -467,44 +538,45 @@ class Processor():
                     else:
                         l1 = 0
                     loss = self.loss(output, label)
-                    score_frag.append(output.data.cpu().numpy())
-                    loss_value.append(loss.data.item())
+                    score_batches.append(output.data.cpu().numpy())
+                    loss_values.append(loss.item())
 
                     _, predict_label = torch.max(output.data, 1)
                     step += 1
 
-                if wrong_file is not None or result_file is not None:
-                    predict = list(predict_label.cpu().numpy())
-                    true = list(label.data.cpu().numpy())
-                    for i, x in enumerate(predict):
-                        if result_file is not None:
-                            f_r.write(str(x) + ',' + str(true[i]) + '\n')
-                        if x != true[i] and wrong_file is not None:
-                            f_w.write(str(index[i]) + ',' + str(x) + ',' + str(true[i]) + '\n')
-            score = np.concatenate(score_frag)
-            loss = np.mean(loss_value)
+                    if wrong_file is not None or result_file is not None:
+                        predict = list(predict_label.cpu().numpy())
+                        true = list(label.data.cpu().numpy())
+                        for i, x in enumerate(predict):
+                            if result_file is not None:
+                                f_r.write(str(x) + ',' + str(true[i]) + '\n')
+                            if x != true[i] and wrong_file is not None:
+                                f_w.write(str(index[i]) + ',' + str(x) + ',' + str(true[i]) + '\n')
+
+            score = np.concatenate(score_batches)
+            loss = np.mean(loss_values)
             accuracy = self.data_loader[ln].dataset.top_k(score, 1)
             if accuracy > self.best_acc:
                 self.best_acc = accuracy
-            # self.lr_scheduler.step(loss)
-            print('Accuracy: ', accuracy, ' model: ', self.arg.model_saved_name)
-            if self.arg.phase == 'train':
-                self.val_writer.add_scalar('loss', loss, self.global_step)
-                self.val_writer.add_scalar('loss_l1', l1, self.global_step)
-                self.val_writer.add_scalar('acc', accuracy, self.global_step)
+                self.best_acc_epoch = epoch + 1
 
-            score_dict = dict(
-                zip(self.data_loader[ln].dataset.sample_name, score))
-            self.print_log('\tMean {} loss of {} batches: {}.'.format(
-                ln, len(self.data_loader[ln]), np.mean(loss_value)))
+            # print('Accuracy: ', accuracy, ' model: ', self.arg.work_dir)
+            # if self.arg.phase == 'train' and not self.arg.debug:
+            #     self.val_writer.add_scalar('loss', loss, self.global_step)
+            #     self.val_writer.add_scalar('loss_l1', l1, self.global_step)
+            #     self.val_writer.add_scalar('acc', accuracy, self.global_step)
+
+            score_dict = dict(zip(self.data_loader[ln].dataset.sample_name, score))
+            self.print_log(f'\tMean {ln} loss of {len(self.data_loader[ln])} batches: {np.mean(loss_values)}.')
             for k in self.arg.show_topk:
-                self.print_log('\tTop{}: {:.2f}%'.format(
-                    k, 100 * self.data_loader[ln].dataset.top_k(score, k)))
+                self.print_log(f'\tTop {k}: {100 * self.data_loader[ln].dataset.top_k(score, k):.2f}%')
 
             if save_score:
-                with open('{}/epoch{}_{}_score.pkl'.format(
-                        self.arg.work_dir, epoch + 1, ln), 'wb') as f:
-                    pickle.dump(score_dict, f)
+                with open('{}/epoch{}_{}_score.pkl'.format(self.arg.work_dir, epoch + 1, ln), 'wb') as f:
+                    pkl.dump(score_dict, f)
+
+        # Empty cache after evaluation
+        torch.cuda.empty_cache()
 
     def start(self):
         if self.arg.phase == 'train':
