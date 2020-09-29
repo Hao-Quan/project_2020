@@ -292,23 +292,28 @@ class Model(nn.Module):
     def __init__(self, num_class, num_point, num_person, graph, graph_args, bias=True):
         super(Model, self).__init__()
 
-        self.dim1 = 128
+        self.dim1 = 256
+        # self.dim1 = 128
         #self.dataset = dataset
         self.seg = 1
         num_joint = 25
-        # N = batch_size
-        # #N = 64
-        M = 2
-        T = 300
+        #N = batch_size
+        # N = 3
+        # M = 2
+        # T = 300
+        in_channels = 3
+
+        self.data_bn = nn.BatchNorm1d(num_person * in_channels * num_point)
         #if args.train:
         # self.spa = self.one_hot(N*M, num_joint, self.seg*T)
         # self.spa = self.spa.permute(0, 3, 2, 1).cuda()
         # self.tem = self.one_hot(N*M, self.seg, num_joint)
         # self.tem = self.tem.permute(0, 3, 1, 2).cuda()
-        self.spa = self.one_hot(M, num_joint, self.seg * T)
-        self.spa = self.spa.permute(0, 3, 2, 1).cuda()
-        self.tem = self.one_hot(M, self.seg, num_joint)
-        self.tem = self.tem.permute(0, 3, 1, 2).cuda()
+
+        # self.spa = self.one_hot(M, num_joint, self.seg * T)
+        # self.spa = self.spa.permute(0, 3, 2, 1).cuda()
+        # self.tem = self.one_hot(M, self.seg, num_joint)
+        # self.tem = self.tem.permute(0, 3, 1, 2).cuda()
 
         # else:
         #     self.spa = self.one_hot(32 * 5, num_joint, self.seg)
@@ -316,8 +321,8 @@ class Model(nn.Module):
         #     self.tem = self.one_hot(32 * 5, self.seg, num_joint)
         #     self.tem = self.tem.permute(0, 3, 1, 2).cuda()
 
-        # self.tem_embed = embed(self.seg, 64 * 4, norm=False, bias=bias)
-        # self.spa_embed = embed(num_joint, 64, norm=False, bias=bias)
+        self.tem_embed = embed(self.seg, 64 * 4, norm=False, bias=bias)
+        self.spa_embed = embed(num_joint, 64, norm=False, bias=bias)
         self.joint_embed = embed(3, 64, norm=False, bias=bias)
         self.dif_embed = embed(3, 64, norm=False, bias=bias)
         self.maxpool = nn.AdaptiveMaxPool2d((1, 1))
@@ -338,33 +343,42 @@ class Model(nn.Module):
         nn.init.constant_(self.gcn3.w.cnn.weight, 0)
 
     def forward(self, input):
-
         # Dynamic Representation
-        #bs, step, dim = input.size()
-        #bs, dim, step, num_joints, h = input.size()
+        # bs, step, dim = input.size()
+        # bs, dim, step, num_joints, h = input.size()
         N, C, T, V, M = input.size()
 
+        self.spa = self.one_hot(N * M, V, self.seg * T)
+        self.spa = self.spa.permute(0, 3, 2, 1).cuda()
+        self.tem = self.one_hot(N * M, self.seg, V)
+        self.tem = self.tem.permute(0, 3, 1, 2).cuda()
+
+        input = input.permute(0, 4, 3, 1, 2).contiguous().view(N, M * V * C, T)
+        input = self.data_bn(input)
         #num_joints = dim // 3
         #input = input.view((bs, step, num_joints, dim, h))
         input = input.view(N*M, T, V, C)
         #input = input.permute(0, 3, 2, 1, 4).contiguous()
         input = input.permute(0, 3, 2, 1).contiguous()
+
         dif = input[:, :, :, 1:] - input[:, :, :, 0:-1]
         dif = torch.cat([dif.new(N*M, dif.size(1), V, 1).zero_(), dif], dim=-1)
         #should be: dif.new(bs, dif.size(1), num_joints, step-1, h).zero_()
 
-        # joint - spatial embed
-        pos = self.joint_embed(input)
-        # joint - temporal embed
-        dif = self.dif_embed(dif)
-
-        #spa1 = self.spa_embed(self.spa)
-
-
+        # # joint - spatial embed
+        # pos = self.joint_embed(input)
+        # # joint - temporal embed
+        # dif = self.dif_embed(dif)
         # # joint distance - spatial embed
         # tem1 = self.tem_embed(self.tem)
         # # joint distance - temporal embed
         # dif = self.dif_embed(dif)
+
+        # original version
+        pos = self.joint_embed(input)
+        tem1 = self.tem_embed(self.tem)
+        spa1 = self.spa_embed(self.spa)
+        dif = self.dif_embed(dif)
 
         dy = pos + dif
         # Joint-level Module
@@ -375,13 +389,14 @@ class Model(nn.Module):
         # print("spa1: {}".format(spa1.size()))
         # input = torch.cat([dy, spa1], 1)
 
-        input = dy
+        #input = dy
+        input = torch.cat([dy, spa1], 1)
         g = self.compute_g1(input)
         input = self.gcn1(input, g)
         input = self.gcn2(input, g)
         input = self.gcn3(input, g)
         # Frame-level Module
-        #input = input + tem1
+        input = input + tem1
         input = self.cnn(input)
         # Classification
         output = self.maxpool(input)    # output (2, 512, 1, 1)  input (2, 512, 1, 20)

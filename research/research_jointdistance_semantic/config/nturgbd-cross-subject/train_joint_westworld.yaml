@@ -45,13 +45,13 @@ model_args:
 #optim
 weight_decay: 0.0001
 base_lr: 0.1
-step: [30, 40]
+step: [30, 50, 70]
 
 # training
 device: [0,1]
 batch_size: 64
 test_batch_size: 64
-num_epoch: 1
+num_epoch: 100
 nesterov: True
 
 save_score: True

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b2a1bc53-b630-4d0b-a210-7944a3dab932" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/config/nturgbd-cross-subject/train_joint.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/config/nturgbd-cross-subject/train_joint.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/config/nturgbd-cross-subject/train_joint_westworld.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/config/nturgbd-cross-subject/train_joint_westworld.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/model/semantic.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../research/research_jointdistance_semantic/model/semantic.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JupyterTrust" id="2430b018-6790-4aeb-9ecf-61536f7ca44b" />
+  <component name="ProjectId" id="1fBayP8JVQzSr0CnWMZkTkg1pcp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
+  </component>
+  <component name="PyDebuggerOptionsProvider">
+    <option name="mySupportGeventDebugging" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/ntu" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SGN-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="--network SGN --train 1 --case 0" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SGN-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.model" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.model" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2a1bc53-b630-4d0b-a210-7944a3dab932" name="Default Changelist" comment="" />
+      <created>1595694193347</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595694193347</updated>
+      <workItem from="1595694194457" duration="19000" />
+      <workItem from="1595752834772" duration="67000" />
+      <workItem from="1595853076939" duration="6000" />
+      <workItem from="1595954910366" duration="657000" />
+      <workItem from="1596543302601" duration="4620000" />
+      <workItem from="1596570089795" duration="4333000" />
+      <workItem from="1596614685535" duration="1247000" />
+      <workItem from="1596696397611" duration="5184000" />
+      <workItem from="1596785725821" duration="10000" />
+      <workItem from="1596825869697" duration="1062000" />
+      <workItem from="1596879618221" duration="609000" />
+      <workItem from="1597041592171" duration="750000" />
+      <workItem from="1598192076933" duration="5665000" />
+      <workItem from="1598254380162" duration="1617000" />
+      <workItem from="1601131882477" duration="1214000" />
+      <workItem from="1601191328638" duration="334000" />
+      <workItem from="1601191813988" duration="1278000" />
+      <workItem from="1601380237631" duration="2124000" />
+      <workItem from="1601390488920" duration="612000" />
+      <workItem from="1601391131168" duration="830000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="543" y="170" width="832" height="704" key="#SSH_Configurations" timestamp="1601391343257">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="543" y="170" width="832" height="704" key="#SSH_Configurations/67.27.1853.1053@67.27.1853.1053" timestamp="1601391343257" />
+    <state x="217" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601391151994">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="217" y="190" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1601391151994" />
+    <state x="558" y="260" width="670" height="489" key="FileChooserDialogImpl" timestamp="1601391364088">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="558" y="260" width="670" height="489" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1601391364088" />
+    <state width="1807" height="325" key="GridCell.Tab.0.bottom" timestamp="1601193091863">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091863" />
+    <state width="1807" height="325" key="GridCell.Tab.0.center" timestamp="1601193091862">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091862" />
+    <state width="1807" height="325" key="GridCell.Tab.0.left" timestamp="1601193091862">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091862" />
+    <state width="1807" height="325" key="GridCell.Tab.0.right" timestamp="1601193091863">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091863" />
+    <state width="1807" height="325" key="GridCell.Tab.1.bottom" timestamp="1601193091863">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091863" />
+    <state width="1807" height="325" key="GridCell.Tab.1.center" timestamp="1601193091863">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091863" />
+    <state width="1807" height="325" key="GridCell.Tab.1.left" timestamp="1601193091863">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091863" />
+    <state width="1807" height="325" key="GridCell.Tab.1.right" timestamp="1601193091863">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="325" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1601193091863" />
+    <state x="453" y="157" key="SettingsEditor" timestamp="1601391420076">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="453" y="157" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1601391420076" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1596745676550">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/67.27.1853.1053@67.27.1853.1053" timestamp="1596745676550" />
+    <state x="683" y="291" width="620" height="522" key="find.popup" timestamp="1595954933931">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="683" y="291" width="620" height="522" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1595954933931" />
+    <state x="865" y="235" key="ftp.server.browser" timestamp="1601391092446">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="865" y="235" key="ftp.server.browser/67.27.1853.1053@67.27.1853.1053" timestamp="1601391092446" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model.py</url>
+          <line>194</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>159</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SGN_master$model.coverage" NAME="model Coverage Results" MODIFIED="1596544059427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SGN_master$main.coverage" NAME="main Coverage Results" MODIFIED="1601192342125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
