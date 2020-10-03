@@ -82,9 +82,15 @@ class NTUDataLoaders(object):
                 self.metric = 'CS'
             elif self.case == 1:
                 self.metric = 'CV'
-            path = osp.join('./data/ntu', 'NTU_' + self.metric + '.h5')
+            #path = osp.join('./data/ntu', 'NTU_' + self.metric + '.h5')
 
-        f = h5py.File(path , 'r')
+            # WW
+            path = osp.join('/data/ntu', 'NTU_' + self.metric + '.h5')
+
+            # Local PC
+            # path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '.h5')
+
+        f = h5py.File(path, 'r')
         self.train_X = f['x'][:]
         self.train_Y = np.argmax(f['y'][:],-1)
         self.val_X = f['valid_x'][:]
