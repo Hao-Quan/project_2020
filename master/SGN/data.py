@@ -85,10 +85,10 @@ class NTUDataLoaders(object):
             #path = osp.join('./data/ntu', 'NTU_' + self.metric + '.h5')
 
             # WW
-            path = osp.join('/data/ntu', 'NTU_' + self.metric + '.h5')
+            # path = osp.join('/data/ntu', 'NTU_' + self.metric + '.h5')
 
             # Local PC
-            # path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '.h5')
+            path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '.h5')
 
         f = h5py.File(path, 'r')
         self.train_X = f['x'][:]
