@@ -191,4 +191,3 @@ class compute_g_spa(nn.Module):
         g3 = g1.matmul(g2)
         g = self.softmax(g3)
         return g
-    
