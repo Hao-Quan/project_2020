@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 import pickle as pkl
-from sklearn.metrics import confusion_matrix
+#from sklearn.metrics import confusion_matrix
 from tqdm import tqdm
 
 # model = torch.load("results/NTU/SGN/1_best.pth")
