@@ -8,11 +8,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from utils import import_class, count_params
-from model.ms_gcn import MultiScale_GraphConv as MS_GCN
-from model.ms_tcn import MultiScale_TemporalConv as MS_TCN
-from model.ms_gtcn import SpatialTemporal_MS_GCN, UnfoldTemporalWindows
-from model.mlp import MLP
-from model.activation import activation_factory
+
 
 
 class MS_G3D(nn.Module):
@@ -69,37 +65,6 @@ class MS_G3D(nn.Module):
         return x
 
 
-class MultiWindow_MS_G3D(nn.Module):
-    def __init__(self,
-                 in_channels,
-                 out_channels,
-                 A_binary,
-                 num_scales,
-                 window_sizes=[3,5],
-                 window_stride=1,
-                 window_dilations=[1,1]):
-
-        super().__init__()
-        self.gcn3d = nn.ModuleList([
-            MS_G3D(
-                in_channels,
-                out_channels,
-                A_binary,
-                num_scales,
-                window_size,
-                window_stride,
-                window_dilation
-            )
-            for window_size, window_dilation in zip(window_sizes, window_dilations)
-        ])
-
-    def forward(self, x):
-        # Input shape: (N, C, T, V)
-        out_sum = 0
-        for gcn3d in self.gcn3d:
-            out_sum += gcn3d(x)
-        # no activation
-        return out_sum
 
 
 class Model(nn.Module):

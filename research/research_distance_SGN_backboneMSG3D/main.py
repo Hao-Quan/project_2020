@@ -18,7 +18,7 @@ import torch.optim as optim
 from tqdm import tqdm
 from tensorboardX import SummaryWriter
 from torch.optim.lr_scheduler import MultiStepLR
-import apex
+# import apex
 
 from utils import count_params, import_class
 
@@ -38,7 +38,8 @@ def get_parser():
     parser.add_argument(
         '--work-dir',
         type=str,
-        required=True,
+        default='./work_dir',
+        # required=True,
         help='the work folder for storing results')
     parser.add_argument('--model_saved_name', default='')
     parser.add_argument(
@@ -138,11 +139,11 @@ def get_parser():
         '--half',
         action='store_true',
         help='Use half-precision (FP16) training')
-    parser.add_argument(
-        '--amp-opt-level',
-        type=int,
-        default=1,
-        help='NVIDIA Apex AMP optimization level')
+    # parser.add_argument(
+    #     '--amp-opt-level',
+    #     type=int,
+    #     default=1,
+    #     help='NVIDIA Apex AMP optimization level')
 
     parser.add_argument(
         '--base-lr',
@@ -261,11 +262,11 @@ class Processor():
             self.print_log('*************************************')
             self.print_log('*** Using Half Precision Training ***')
             self.print_log('*************************************')
-            self.model, self.optimizer = apex.amp.initialize(
-                self.model,
-                self.optimizer,
-                opt_level=f'O{self.arg.amp_opt_level}'
-            )
+            # self.model, self.optimizer = apex.amp.initialize(
+            #     self.model,
+            #     self.optimizer,
+            #     opt_level=f'O{self.arg.amp_opt_level}'
+            # )
             if self.arg.amp_opt_level != 1:
                 self.print_log('[WARN] nn.DataParallel is not yet supported by amp_opt_level != "O1"')
 
@@ -294,7 +295,7 @@ class Processor():
 
         if self.arg.weights:
             try:
-                self.global_step = int(arg.weights[:-3].split('-')[-1])
+                self.global_step = int(self.arg.weights[:-3].split('-')[-1])
             except:
                 print('Cannot parse global_step from model weights filename')
                 self.global_step = 0
@@ -503,8 +504,9 @@ class Processor():
                 loss = self.loss(output, batch_label) / splits
 
                 if self.arg.half:
-                    with apex.amp.scale_loss(loss, self.optimizer) as scaled_loss:
-                        scaled_loss.backward()
+                    print("should activate apex feature")
+                    # with apex.amp.scale_loss(loss, self.optimizer) as scaled_loss:
+                    #     scaled_loss.backward()
                 else:
                     loss.backward()
 
