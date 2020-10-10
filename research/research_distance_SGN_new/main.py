@@ -93,7 +93,7 @@ def main():
     log_res = list()
 
     lable_path = osp.join(save_path, '%s_lable.txt'% args.case)
-    pred_path = osp.join(save_path, '%s_pred.txt' % args.case)
+    pred_path = osp.join(save_path, '%s_score.npy' % args.case)
 
     # Training
     if args.train ==1:
@@ -226,7 +226,9 @@ def test(test_loader, model, checkpoint, lable_path, pred_path):
     label_output = np.concatenate(label_output, axis=0)
     np.savetxt(lable_path, label_output, fmt='%d')
     pred_output = np.concatenate(pred_output, axis=0)
-    np.savetxt(pred_path, pred_output, fmt='%f')
+    # np.savetxt(pred_path, pred_output, fmt='%f')
+    with open(pred_path, 'wb') as f:
+        np.save(f, pred_output)
 
     print('Test: accuracy {:.3f}, time: {:.2f}s'
           .format(acces.avg, time.time() - t_start))
