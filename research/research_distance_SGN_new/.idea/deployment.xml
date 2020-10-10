@@ -5,7 +5,7 @@
       <paths name="westworld">
         <serverdata>
           <mappings>
-            <mapping deploy="project_2020/master/SGN" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="project_2020/research/research_distance_SGN_new" local="$PROJECT_DIR$" web="/" />
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/data" />

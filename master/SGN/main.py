@@ -36,7 +36,6 @@ parser.set_defaults(
     print_freq = 20,
     train = 0,
     seg = 20,
-    # seg = 300,
     )
 args = parser.parse_args()
 

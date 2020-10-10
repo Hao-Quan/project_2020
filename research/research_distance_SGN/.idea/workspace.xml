@@ -20,11 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2a1bc53-b630-4d0b-a210-7944a3dab932" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../master/SGN/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../master/SGN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../master/SGN/results/NTU/SGN/0_best.pth" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/results/NTU/SGN/0_best.pth" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_backboneMSG3D/data/nturgbd_raw/NTU_RGBD120_samples_with_missing_skeletons.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_backboneMSG3D/data/nturgbd_raw/NTU_RGBD_samples_with_missing_skeletons.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_backboneMSG3D/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research_distance_SGN_backboneMSG3D/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_backboneMSG3D/model/sgn.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research_distance_SGN_backboneMSG3D/model/sgn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_new/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../research_distance_SGN_new/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_new/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../research_distance_SGN_new/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_new/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research_distance_SGN_new/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../research_distance_SGN_new/results/NTU/SGN/0_best.pth" beforeDir="false" afterPath="$PROJECT_DIR$/../research_distance_SGN_new/results/NTU/SGN/0_best.pth" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,20 +60,20 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../research_distance_SGN_backboneMSG3D" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../research_distance_SGN_new" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyDebuggerOptionsProvider">
     <option name="mySupportGeventDebugging" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data_preprocess" />
-      <recent name="$PROJECT_DIR$/data/ntu_light" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data/scritp_process_data" />
       <recent name="$PROJECT_DIR$/data/ntu" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data_preprocess" />
+      <recent name="$PROJECT_DIR$/data/ntu_light" />
     </key>
   </component>
   <component name="RunManager" selected="Python.data_gen_600">
@@ -242,6 +245,8 @@
       <workItem from="1602051034031" duration="25469000" />
       <workItem from="1602158587507" duration="849000" />
       <workItem from="1602229287619" duration="6589000" />
+      <workItem from="1602251523488" duration="1194000" />
+      <workItem from="1602314928012" duration="405000" />
     </task>
     <servers />
   </component>
@@ -273,10 +278,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="961" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1601756221911" />
-    <state x="435" y="245" width="780" height="489" key="FileChooserDialogImpl" timestamp="1602236585032">
+    <state x="435" y="245" width="780" height="489" key="FileChooserDialogImpl" timestamp="1602315331029">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="435" y="245" width="780" height="489" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1602236585032" />
+    <state x="435" y="245" width="780" height="489" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1602315331029" />
     <state width="1807" height="270" key="GridCell.Tab.0.bottom" timestamp="1602238046518">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
