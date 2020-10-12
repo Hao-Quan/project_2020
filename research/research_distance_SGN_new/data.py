@@ -87,33 +87,33 @@ class NTUDataLoaders(object):
             # WW
             # path = osp.join('/data/ntu', 'NTU_' + self.metric + '.h5')
             # path = osp.join('/data/ntu_light', 'NTU_' + self.metric + '_extended_N_300_750' + '.h5')
-            # path = osp.join('/data/ntu/h5/xsub/')
+            path = osp.join('/data/ntu/h5/xsub/')
 
             # Local PC
             # path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '.h5')
-            path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '_extended_N_300_750' + '.h5')
+            # path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '_extended_N_300_750' + '.h5')
             # path = osp.join('./data/ntu_light/h5/xsub/')
 
         # H5 version
-        f = h5py.File(path, 'r')
-        self.train_X = f['x'][:]
-        self.train_Y = np.argmax(f['y'][:],-1)
-        self.val_X = f['valid_x'][:]
-        self.val_Y = np.argmax(f['valid_y'][:], -1)
-        self.test_X = f['test_x'][:]
-        self.test_Y = np.argmax(f['test_y'][:], -1)
-        f.close()
+        # f = h5py.File(path, 'r')
+        # self.train_X = f['x'][:]
+        # self.train_Y = np.argmax(f['y'][:],-1)
+        # self.val_X = f['valid_x'][:]
+        # self.val_Y = np.argmax(f['valid_y'][:], -1)
+        # self.test_X = f['test_x'][:]
+        # self.test_Y = np.argmax(f['test_y'][:], -1)
+        # f.close()
 
         # Westworld
-        # self.train_X = np.load(path + 'joint_distance/x_joint_distance_flatten_N*300*150.npy', mmap_mode='r')
-        # self.train_X = self.train_X.astype(np.float32)
-        # self.train_Y = np.load(path + 'y.npy', mmap_mode='r')
-        # self.val_X = np.load(path + 'joint_distance/valid_x_joint_distance_flatten_N*300*150.npy', mmap_mode='r')
-        # self.val_X = self.val_X.astype(np.float32)
-        # self.val_Y = np.load(path + 'valid_y.npy', mmap_mode='r')
-        # self.test_X = np.load(path + 'joint_distance/test_x_joint_distance_flatten_N*300*150.npy', mmap_mode='r')
-        # self.test_X = self.test_X.astype(np.float32)
-        # self.test_Y = np.load(path + 'test_y.npy', mmap_mode='r')
+        self.train_X = np.load(path + 'joint_distance/x_joint_and_distance.npy', mmap_mode='r')
+        self.train_X = self.train_X.astype(np.float32)
+        self.train_Y = np.load(path + 'y.npy', mmap_mode='r')
+        self.val_X = np.load(path + 'joint_distance/valid_x_joint_and_distance.npy', mmap_mode='r')
+        self.val_X = self.val_X.astype(np.float32)
+        self.val_Y = np.load(path + 'valid_y.npy', mmap_mode='r')
+        self.test_X = np.load(path + 'joint_distance/test_x_joint_and_distance.npy', mmap_mode='r')
+        self.test_X = self.test_X.astype(np.float32)
+        self.test_Y = np.load(path + 'test_y.npy', mmap_mode='r')
 
         # Local
         # self.train_X = np.load(path + 'joint_distance/x_joint_distance_flatten_N*300*150.npy', mmap_mode='r')

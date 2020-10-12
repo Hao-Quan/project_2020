@@ -21,16 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b2a1bc53-b630-4d0b-a210-7944a3dab932" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../master/SGN/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../master/SGN/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../master/SGN/results/NTU/SGN/0_best.pth" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/results/NTU/SGN/0_best.pth" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SGN-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SGN-master.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/scritp_process_data/ntu_f5_extend_N_300_750.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/scritp_process_data/ntu_f5_extend_N_300_750.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/NTU/SGN/0_lable.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/NTU/SGN/0_lable.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/NTU/SGN/0_pred.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/NTU/SGN/0_pred.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/NTU/SGN/0_best.pth" beforeDir="false" afterPath="$PROJECT_DIR$/results/NTU/SGN/0_best.pth" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +49,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/data/scritp_process_data" />
+    <property name="last_opened_file_path" value="/media/hao/My Passport/dataset/data" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyDebuggerOptionsProvider">
@@ -74,7 +67,7 @@
       <recent name="$PROJECT_DIR$/data/ntu_light" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ntu_f5_extend_N_300_750">
+  <component name="RunManager" selected="Python.main">
     <configuration name="ensemble" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SGN-master" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -97,7 +90,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="SGN-master" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -111,7 +104,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="--network SGN --train 1 --case 0" />
+      <option name="PARAMETERS" value="--network SGN --train 0 --case 0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -195,7 +188,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.ntu_f5_extend_N_300_750" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.ensemble" />
         <item itemvalue="Python.ntu_f5_extend_N*300*150" />
         <item itemvalue="Python.ntu_distance_reshape" />
@@ -238,7 +230,8 @@
       <workItem from="1601710939750" duration="20011000" />
       <workItem from="1602238301237" duration="4254000" />
       <workItem from="1602245836112" duration="11034000" />
-      <workItem from="1602315334033" duration="23114000" />
+      <workItem from="1602315334033" duration="23246000" />
+      <workItem from="1602499468909" duration="2135000" />
     </task>
     <servers />
   </component>
@@ -262,10 +255,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="543" y="170" width="832" height="704" key="#SSH_Configurations/67.27.1853.1053@67.27.1853.1053" timestamp="1601391343257" />
-    <state x="247" y="292" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602336724511">
+    <state x="237" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602511068943">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="247" y="292" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1602336724511" />
+    <state x="237" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1602511068943" />
     <state x="610" y="354" width="756" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602342786102">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -274,42 +267,42 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state width="961" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1601728968670" />
-    <state x="435" y="245" width="670" height="489" key="FileChooserDialogImpl" timestamp="1602332841744">
+    <state x="435" y="245" width="670" height="489" key="FileChooserDialogImpl" timestamp="1602500619680">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="435" y="245" width="670" height="489" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1602332841744" />
-    <state width="1807" height="428" key="GridCell.Tab.0.bottom" timestamp="1602344389602">
+    <state x="435" y="245" width="670" height="489" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1602500619680" />
+    <state width="923" height="245" key="GridCell.Tab.0.bottom" timestamp="1602500329037">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1602344389602" />
-    <state width="1807" height="428" key="GridCell.Tab.0.center" timestamp="1602344389600">
+    <state width="923" height="245" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1602500329037" />
+    <state width="923" height="245" key="GridCell.Tab.0.center" timestamp="1602500329036">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1602344389600" />
-    <state width="1807" height="428" key="GridCell.Tab.0.left" timestamp="1602344389598">
+    <state width="923" height="245" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1602500329036" />
+    <state width="923" height="245" key="GridCell.Tab.0.left" timestamp="1602500329034">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1602344389598" />
-    <state width="1807" height="428" key="GridCell.Tab.0.right" timestamp="1602344389601">
+    <state width="923" height="245" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1602500329034" />
+    <state width="923" height="245" key="GridCell.Tab.0.right" timestamp="1602500329037">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1602344389601" />
-    <state width="1807" height="428" key="GridCell.Tab.1.bottom" timestamp="1602344311509">
+    <state width="923" height="245" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1602500329037" />
+    <state width="1807" height="428" key="GridCell.Tab.1.bottom" timestamp="1602346943209">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1602344311509" />
-    <state width="1807" height="428" key="GridCell.Tab.1.center" timestamp="1602344311509">
+    <state width="1807" height="428" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1602346943209" />
+    <state width="1807" height="428" key="GridCell.Tab.1.center" timestamp="1602346943209">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1602344311509" />
-    <state width="1807" height="428" key="GridCell.Tab.1.left" timestamp="1602344311509">
+    <state width="1807" height="428" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1602346943209" />
+    <state width="1807" height="428" key="GridCell.Tab.1.left" timestamp="1602346943209">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1602344311509" />
-    <state width="1807" height="428" key="GridCell.Tab.1.right" timestamp="1602344311509">
+    <state width="1807" height="428" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1602346943209" />
+    <state width="1807" height="428" key="GridCell.Tab.1.right" timestamp="1602346943209">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="428" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1602344311509" />
+    <state width="1807" height="428" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1602346943209" />
     <state x="396" y="152" width="1193" height="730" key="SettingsEditor" timestamp="1602326488417">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -456,7 +449,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/data/scritp_process_data/ntu_f5_extend_N_300_750.py</url>
-          <line>13</line>
+          <line>17</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
       </breakpoints>
@@ -471,7 +464,7 @@
     <SUITE FILE_PATH="coverage/research_distance_SGN_new$ntu_f5_extend_N_300_750.coverage" NAME="ntu_f5_extend_N_300_750 Coverage Results" MODIFIED="1602344310507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data/scritp_process_data" />
     <SUITE FILE_PATH="coverage/SGN$main.coverage" NAME="main Coverage Results" MODIFIED="1602243560776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/research_distance_SGN_new$ensemble.coverage" NAME="ensemble Coverage Results" MODIFIED="1602341553857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ensemble" />
-    <SUITE FILE_PATH="coverage/research_distance_SGN_new$main.coverage" NAME="main Coverage Results" MODIFIED="1602342569658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/research_distance_SGN_new$main.coverage" NAME="main Coverage Results" MODIFIED="1602499579282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/research_distance_SGN_new$ntu_distance_reshape.coverage" NAME="ntu_distance_reshape Coverage Results" MODIFIED="1602251464321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data/scritp_process_data" />
     <SUITE FILE_PATH="coverage/SGN$ntu_f5_to_numpy.coverage" NAME="ntu_f5_to_numpy Coverage Results" MODIFIED="1602245462342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data/scritp_process_data" />
   </component>
