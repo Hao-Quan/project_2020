@@ -153,6 +153,8 @@ def main():
 def train(train_loader, model, criterion, optimizer, epoch):
     losses = AverageMeter()
     acces = AverageMeter()
+
+    model.load_state_dict(torch.load('./results/NTU/SGN/0_best.pth')['state_dict'])
     model.train()
 
     for i, (inputs, target) in enumerate(train_loader):

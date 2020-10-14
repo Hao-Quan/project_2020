@@ -82,7 +82,7 @@ class NTUDataLoaders(object):
                 self.metric = 'CS'
             elif self.case == 1:
                 self.metric = 'CV'
-            #path = osp.join('./data/ntu', 'NTU_' + self.metric + '.h5')
+            # path = osp.join('./data/ntu', 'NTU_' + self.metric + '.h5')
 
             # WW
             # path = osp.join('/data/ntu', 'NTU_' + self.metric + '.h5')
@@ -116,13 +116,13 @@ class NTUDataLoaders(object):
         self.test_Y = np.load(path + 'test_y.npy', mmap_mode='r')
 
         # Local
-        # self.train_X = np.load(path + 'joint_distance/x_joint_distance_flatten_N*300*150.npy', mmap_mode='r')
+        # self.train_X = np.load(path + 'joint_distance/x_joint_and_distance.npy', mmap_mode='r')
         # self.train_X = self.train_X.astype(np.float32)
         # self.train_Y = np.load(path + 'y.npy', mmap_mode='r')
-        # self.val_X = np.load(path + 'joint_distance/valid_x_joint_distance_flatten_N*300*150.npy', mmap_mode='r')
+        # self.val_X = np.load(path + 'joint_distance/valid_x_joint_and_distance.npy', mmap_mode='r')
         # self.val_X = self.val_X.astype(np.float32)
         # self.val_Y = np.load(path + 'valid_y.npy', mmap_mode='r')
-        # self.test_X = np.load(path + 'joint_distance/test_x_joint_distance_flatten_N*300*150.npy', mmap_mode='r')
+        # self.test_X = np.load(path + 'joint_distance/test_x_joint_and_distance.npy', mmap_mode='r')
         # self.test_X = self.test_X.astype(np.float32)
         # self.test_Y = np.load(path + 'test_y.npy', mmap_mode='r')
 
