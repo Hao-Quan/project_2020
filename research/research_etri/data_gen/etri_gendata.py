@@ -3,6 +3,7 @@ sys.path.extend(['../'])
 
 import pickle
 import argparse
+import pandas as pd
 
 from tqdm import tqdm
 
@@ -21,61 +22,125 @@ max_body_kinect = 4
 num_joint = 25
 max_frame = 300
 
+
 import numpy as np
 import os
 
+# NTU raw data version
+# def read_skeleton_filter(file):
+#     with open(file, 'r') as f:
+#         # Jump header row
+#         next(f)
+#         row_data = f.readline()
+#
+#         skeleton_sequence = {}
+#         skeleton_sequence['numFrame'] = int(row_data[0])
+#         skeleton_sequence['frameInfo'] = []
+#         # num_body = 0
+#         for t in range(skeleton_sequence['numFrame']):
+#             frame_info = {}
+#             frame_info['numBody'] = int(row_data[2])
+#             frame_info['bodyInfo'] = []
+#
+#             for m in range(frame_info['numBody']):
+#                 body_info = {}
+#                 # body_info_key = [
+#                 #     'bodyID', 'clipedEdges', 'handLeftConfidence',
+#                 #     'handLeftState', 'handRightConfidence', 'handRightState',
+#                 #     'isResticted', 'leanX', 'leanY', 'trackingState'
+#                 # ]
+#                 # body_info = {
+#                 #     k: float(v)
+#                 #     for k, v in zip(body_info_key, f.readline().split())
+#                 # }
+#                 body_info['numJoint'] = 25
+#                 body_info['jointInfo'] = []
+#                 for v in range(body_info['numJoint']):
+#                     joint_info_key = [
+#                         'x', 'y', 'z',
+#                         'depthX', 'depthY',
+#                         'orientationX', 'orientationY', 'orientationZ', 'orientationW',
+#                         'trackingState'
+#                     ]
+#
+#                     # joint_info = {
+#                     #     k: float(v)
+#                     #     for k, v in zip(joint_info_key, f.readline().split())
+#                     # }
+#                     row_data = [row_data[3], row_data[4], row_data[5],
+#                                 row_data[6], row_data[7],
+#                                 row_data[8], row_data[9], row_data[10], row_data[11],
+#                                 row_data[12]]
+#
+#
+#                     joint_info = {
+#                         k: float(v)
+#                         for k, v in zip(joint_info_key, row_data.split())
+#                     }
+#
+#                     body_info['jointInfo'].append(joint_info)
+#                 frame_info['bodyInfo'].append(body_info)
+#             skeleton_sequence['frameInfo'].append(frame_info)
+#
+#     return skeleton_sequence
 
+# csv version
 def read_skeleton_filter(file):
-    with open(file, 'r') as f:
-        # Jump header row
-        next(f)
-        row_data = f.readline()
+    df = pd.read_csv(file)
+    saved_column = df.columns
+    skeleton_sequence = {}
+    # get #row in each csv
+    skeleton_sequence['numFrame'] = len(df.index)
+    skeleton_sequence['frameInfo'] = []
 
-        skeleton_sequence = {}
-        skeleton_sequence['numFrame'] = int(row_data[0])
-        skeleton_sequence['frameInfo'] = []
-        # num_body = 0
-        for t in range(skeleton_sequence['numFrame']):
-            frame_info = {}
-            frame_info['numBody'] = int(row_data[2])
-            frame_info['bodyInfo'] = []
+    # how many people in single frame
+    if (df.iloc[0][1] == df.iloc[1][1]):
+        numBody = 1
+        step_frame = 1
+    else:
+        numBody = 2
+        step_frame = 2
 
-            for m in range(frame_info['numBody']):
-                body_info = {}
-                # body_info_key = [
-                #     'bodyID', 'clipedEdges', 'handLeftConfidence',
-                #     'handLeftState', 'handRightConfidence', 'handRightState',
-                #     'isResticted', 'leanX', 'leanY', 'trackingState'
-                # ]
-                # body_info = {
-                #     k: float(v)
-                #     for k, v in zip(body_info_key, f.readline().split())
-                # }
-                body_info['numJoint'] = 25
-                body_info['jointInfo'] = []
-                for v in range(body_info['numJoint']):
-                    joint_info_key = [
-                        'x', 'y', 'z', 'depthX', 'depthY',
-                        'orientationX', 'orientationY', 'orientationZ',
-                        'orientationW', 'trackingState'
-                    ]
+    for t in range(0, skeleton_sequence['numFrame'], step_frame):
+        frame_info = {}
 
-                    # joint_info = {
-                    #     k: float(v)
-                    #     for k, v in zip(joint_info_key, f.readline().split())
-                    # }
+        frame_info['numBody'] = numBody
 
-                    joint_info = {
-                        k: float(v)
-                        for k, v in zip(joint_info_key, row_data.split())
-                    }
+        frame_info['bodyInfo'] = []
 
-                    body_info['jointInfo'].append(joint_info)
-                frame_info['bodyInfo'].append(body_info)
-            skeleton_sequence['frameInfo'].append(frame_info)
+        for m in range(frame_info['numBody']):
+            body_info = {}
+            body_info_key = [
+                'bodyID'
+            ]
+            body_info = {
+                k: int(v)
+                for k, v in zip(body_info_key, [df.iloc[t + m][1]])
+            }
+
+            body_info['numJoint'] = 25
+            body_info['jointInfo'] = []
+
+            for v in range(body_info['numJoint']):
+                joint_info_key = [
+                    'x', 'y', 'z',
+                    'depthX', 'depthY',
+                    'orientationX', 'orientationY', 'orientationZ', 'orientationW',
+                    'trackingState'
+                ]
+                row_data = [df.iloc[t + m][3 + v * 10], df.iloc[t + m][4 + v * 10], df.iloc[t + m][5 + v * 10],
+                            df.iloc[t + m][6 + v * 10], df.iloc[t + m][7 + v * 10],
+                            df.iloc[t + m][8 + v * 10], df.iloc[t + m][9 + v * 10], df.iloc[t + m][10 + v * 10], df.iloc[t + m][11 + v * 10],
+                            df.iloc[t + m][12 + v * 10]]
+                joint_info = {
+                    k: float(v)
+                    for k, v in zip(joint_info_key, row_data)
+                }
+                body_info['jointInfo'].append(joint_info)
+            frame_info['bodyInfo'].append(body_info)
+        skeleton_sequence['frameInfo'].append(frame_info)
 
     return skeleton_sequence
-
 
 def get_nonzero_std(s):  # tvc
     index = s.sum(-1).sum(-1) != 0  # select valid frames
@@ -151,8 +216,17 @@ def gendata(data_path, out_path, ignored_sample_path=None, benchmark='xview', pa
         data = read_xyz(os.path.join(data_path, s), max_body=max_body_kinect, num_joint=num_joint)
         fp[i, :, 0:data.shape[1], :, :] = data
 
+    # s = 'A047_P001_G001_C001.csv'
+    # i = 0
+
+    data = read_xyz(os.path.join(data_path, s), max_body=max_body_kinect, num_joint=num_joint)
+    fp[i, :, 0:data.shape[1], :, :] = data
+    np.save('{}/{}_data_joint_no_normalized.npy'.format(out_path, part), fp)
+
     fp = pre_normalization(fp)
     np.save('{}/{}_data_joint.npy'.format(out_path, part), fp)
+
+    print("end one sample")
 
 
 if __name__ == '__main__':
