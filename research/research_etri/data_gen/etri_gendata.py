@@ -411,16 +411,16 @@ if __name__ == '__main__':
     # parser.add_argument('--out_folder', default='../data/etri/etri_data_light')
 
     # Westworld
-    # parser.add_argument('--data_path', default='/data/etri/etri_raw_data/')
-    # parser.add_argument('--out_folder', default='/data/etri/etri_data/')
+    parser.add_argument('--data_path', default='/data/etri/etri_raw_data/')
+    parser.add_argument('--out_folder', default='/data/etri/etri_data/')
 
     # Local
     # parser.add_argument('--data_path', default='../data/etri/etri_raw_data/')
     # parser.add_argument('--out_folder', default='../data/etri/etri_data/')
 
     # Local light
-    parser.add_argument('--data_path', default='../data/etri/etri_raw_data_light/')
-    parser.add_argument('--out_folder', default='../data/etri/etri_data_light/')
+    # parser.add_argument('--data_path', default='../data/etri/etri_raw_data_light/')
+    # parser.add_argument('--out_folder', default='../data/etri/etri_data_light/')
 
     parser.add_argument('--ignored_sample_path',
                         default=None)
@@ -428,31 +428,45 @@ if __name__ == '__main__':
     # benchmark = ['xsub', 'xview']
     # part = ['train', 'val']
     benchmark = ['xsub']
-    part = ['train']
+    part = ['train', 'val']
     arg = parser.parse_args()
 
+    # Single CPU version
+    # for b in benchmark:
+    #     for p in part:
+    #         out_path = os.path.join(arg.out_folder, b)
+    #         if not os.path.exists(out_path):
+    #             os.makedirs(out_path)
+    #         print(b, p)
+    #         gendata(
+    #             arg.data_path,
+    #             out_path,
+    #             arg.ignored_sample_path,
+    #             benchmark=b,
+    #             part=p)
+
+    # Multi processing version
+    processes = []
     for b in benchmark:
         for p in part:
             out_path = os.path.join(arg.out_folder, b)
             if not os.path.exists(out_path):
                 os.makedirs(out_path)
             print(b, p)
-            gendata(
-                arg.data_path,
-                out_path,
-                arg.ignored_sample_path,
-                benchmark=b,
-                part=p)
-
             # Multi-processing
-            # multiprocessing.Process(
-            #     target=gendata,
-            #     args=(
-            #         arg.data_path,
-            #         out_path,
-            #         arg.ignored_sample_path,
-            #         b,
-            #         p,
-            #     )
-            # )
+            p = multiprocessing.Process(
+                target=gendata,
+                args=(
+                    arg.data_path,
+                    out_path,
+                    arg.ignored_sample_path,
+                    b,
+                    p,
+                )
+            )
+            processes.append(p)
+            p.start()
+
+    for process in processes:
+        process.join()
 
