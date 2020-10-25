@@ -1,16 +1,40 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import time
+import multiprocessing
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def is_prime(n):
+    if (n <= 1):
+        return 'not a prime number'
+    if (n <= 3):
+        return 'prime number'
+
+    if (n % 2 == 0 or n % 3 == 0):
+        return 'not a prime number'
+
+    i = 5
+    while (i * i <= n):
+        if (n % i == 0 or n % (i + 2) == 0):
+            return 'not a prime number'
+        i = i + 6
+
+    return 'prime number'
 
 
-# Press the green button in the gutter to run the script.
+def multiprocessing_func(x):
+    time.sleep(2)
+    print('{} is {} number'.format(x, is_prime(x)))
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    starttime = time.time()
+    processes = []
+    for i in range(1, 10):
+        p = multiprocessing.Process(target=multiprocessing_func, args=(i,))
+        processes.append(p)
+        p.start()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    for process in processes:
+        process.join()
+
+    print()
+    print('Time taken = {} seconds'.format(time.time() - starttime))
