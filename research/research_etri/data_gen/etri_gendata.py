@@ -191,6 +191,7 @@ max_body_kinect = 4
 num_joint = 25
 max_frame = 300
 
+folder = 'A001_A005'
 
 import numpy as np
 import os
@@ -282,6 +283,9 @@ def read_skeleton_filter(file):
         frame_info['bodyInfo'] = []
 
         for m in range(frame_info['numBody']):
+            if df.iloc[t + m][1].isnull():
+                continue
+
             body_info = {}
             body_info_key = [
                 'bodyID'
@@ -379,7 +383,7 @@ def gendata(data_path, out_path, ignored_sample_path=None, benchmark='xview', pa
             sample_name.append(filename)
             sample_label.append(action_class - 1)
 
-    with open('{}/{}_label.pkl'.format(out_path, part), 'wb') as f:
+    with open('{}/{}_label_{}.pkl'.format(out_path, part, folder), 'wb') as f:
         pickle.dump((sample_name, list(sample_label)), f)
 
     fp = np.zeros((len(sample_label), 3, max_frame, num_joint, max_body_true), dtype=np.float32)
@@ -389,34 +393,24 @@ def gendata(data_path, out_path, ignored_sample_path=None, benchmark='xview', pa
         data = read_xyz(os.path.join(data_path, s), max_body=max_body_kinect, num_joint=num_joint)
         fp[i, :, 0:data.shape[1], :, :] = data
 
-    # s = 'A047_P001_G001_C001.csv'
-    # i = 0
-
-    data = read_xyz(os.path.join(data_path, s), max_body=max_body_kinect, num_joint=num_joint)
-    fp[i, :, 0:data.shape[1], :, :] = data
+    # save NOT normalized data
     # np.save('{}/{}_data_joint_no_normalized.npy'.format(out_path, part), fp)
-
     fp = pre_normalization(fp)
-    np.save('{}/{}_data_joint.npy'.format(out_path, part), fp)
+    np.save('{}/{}_data_joint_{}.npy'.format(out_path, part, folder), fp)
 
     #print("end one sample")
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='ETRI Data Converter.')
-    #parser.add_argument('--data_path', default='../etri_raw/')
-    # parser.add_argument('--data_path', default='../data/etri/etri_raw_data/')
-    # parser.add_argument('--data_path', default='../data/etri/etri_raw_data_light/')
-    # parser.add_argument('--out_folder', default='../data/etri/etri_data')
-    # parser.add_argument('--out_folder', default='../data/etri/etri_data_light')
 
     # Westworld
-    parser.add_argument('--data_path', default='/data/etri/etri_raw_data/')
-    parser.add_argument('--out_folder', default='/data/etri/etri_data/')
+    # parser.add_argument('--data_path', default='/data/etri/etri_raw_data/' + folder)
+    # parser.add_argument('--out_folder', default='/data/etri/etri_data/' + folder)
 
     # Local
-    # parser.add_argument('--data_path', default='../data/etri/etri_raw_data/')
-    # parser.add_argument('--out_folder', default='../data/etri/etri_data/')
+    parser.add_argument('--data_path', default='../data/etri/etri_raw_data/' + folder)
+    parser.add_argument('--out_folder', default='../data/etri/etri_data/' + folder)
 
     # Local light
     # parser.add_argument('--data_path', default='../data/etri/etri_raw_data_light/')
@@ -432,41 +426,41 @@ if __name__ == '__main__':
     arg = parser.parse_args()
 
     # Single CPU version
-    # for b in benchmark:
-    #     for p in part:
-    #         out_path = os.path.join(arg.out_folder, b)
-    #         if not os.path.exists(out_path):
-    #             os.makedirs(out_path)
-    #         print(b, p)
-    #         gendata(
-    #             arg.data_path,
-    #             out_path,
-    #             arg.ignored_sample_path,
-    #             benchmark=b,
-    #             part=p)
-
-    # Multi processing version
-    processes = []
     for b in benchmark:
         for p in part:
             out_path = os.path.join(arg.out_folder, b)
             if not os.path.exists(out_path):
                 os.makedirs(out_path)
             print(b, p)
-            # Multi-processing
-            p = multiprocessing.Process(
-                target=gendata,
-                args=(
-                    arg.data_path,
-                    out_path,
-                    arg.ignored_sample_path,
-                    b,
-                    p,
-                )
-            )
-            processes.append(p)
-            p.start()
+            gendata(
+                arg.data_path,
+                out_path,
+                arg.ignored_sample_path,
+                benchmark=b,
+                part=p)
 
-    for process in processes:
-        process.join()
 
+    # Multi processing version
+    # processes = []
+    # for b in benchmark:
+    #     for p in part:
+    #         out_path = os.path.join(arg.out_folder, b)
+    #         if not os.path.exists(out_path):
+    #             os.makedirs(out_path)
+    #         print(b, p)
+    #         # Multi-processing for TRAIN and TEST data
+    #         p = multiprocessing.Process(
+    #             target=gendata,
+    #             args=(
+    #                 arg.data_path,
+    #                 out_path,
+    #                 arg.ignored_sample_path,
+    #                 b,
+    #                 p,
+    #             )
+    #         )
+    #         processes.append(p)
+    #         p.start()
+    #
+    # for process in processes:
+    #     process.join()
