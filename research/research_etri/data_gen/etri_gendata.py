@@ -1,7 +1,10 @@
 # start - rotation.py
 import math
 import numpy as np
-import multiprocessing
+from multiprocessing import Pool
+from functools import partial
+from itertools import repeat, product
+import time
 
 def rotation_matrix(axis, theta):
     """
@@ -191,7 +194,8 @@ max_body_kinect = 4
 num_joint = 25
 max_frame = 300
 
-folder = 'A001_A005'
+# folder = 'A001_A005'
+folder = 'A006_A010'
 
 import numpy as np
 import os
@@ -255,6 +259,7 @@ import os
 #     return skeleton_sequence
 
 # csv version
+
 def read_skeleton_filter(file):
     df = pd.read_csv(file)
     saved_column = df.columns
@@ -283,7 +288,7 @@ def read_skeleton_filter(file):
         frame_info['bodyInfo'] = []
 
         for m in range(frame_info['numBody']):
-            if df.iloc[t + m][1].isnull():
+            if pd.isna(df.iloc[t + m][1]):
                 continue
 
             body_info = {}
@@ -388,10 +393,26 @@ def gendata(data_path, out_path, ignored_sample_path=None, benchmark='xview', pa
 
     fp = np.zeros((len(sample_label), 3, max_frame, num_joint, max_body_true), dtype=np.float32)
 
-    # Fill in the data tensor `fp` one training example a time
-    for i, s in enumerate(tqdm(sample_name)):
-        data = read_xyz(os.path.join(data_path, s), max_body=max_body_kinect, num_joint=num_joint)
-        fp[i, :, 0:data.shape[1], :, :] = data
+    start_time = time.time()
+    # Start - Multiprocess Version
+    p = Pool(processes=8)
+    list_path = []
+    for name in sample_name:
+        list_path.append(data_path +'/'+ name)
+
+    data = p.starmap(read_xyz, zip(list_path, repeat(max_body_kinect), repeat(num_joint)))
+    for i, s in enumerate(tqdm(data)):
+        data_np = np.array(data[i])
+        fp[i, :, 0:data_np.shape[1], :, :] = data_np
+    # End - Multiprocess Version
+    print("--- %s seconds ---" % (time.time() - start_time))
+
+    # Start - Single CPU Version
+   # Fill in the data tensor `fp` one training example a time
+   #  for i, s in enumerate(tqdm(sample_name)):
+   #      data = read_xyz(os.path.join(data_path, s), max_body=max_body_kinect, num_joint=num_joint)
+   #      fp[i, :, 0:data.shape[1], :, :] = data
+    # End - Single CPU Version
 
     # save NOT normalized data
     # np.save('{}/{}_data_joint_no_normalized.npy'.format(out_path, part), fp)
@@ -405,12 +426,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='ETRI Data Converter.')
 
     # Westworld
-    # parser.add_argument('--data_path', default='/data/etri/etri_raw_data/' + folder)
-    # parser.add_argument('--out_folder', default='/data/etri/etri_data/' + folder)
+    parser.add_argument('--data_path', default='/data/etri/etri_raw_data/' + folder)
+    parser.add_argument('--out_folder', default='/data/etri/etri_data/' + folder)
 
     # Local
-    parser.add_argument('--data_path', default='../data/etri/etri_raw_data/' + folder)
-    parser.add_argument('--out_folder', default='../data/etri/etri_data/' + folder)
+    # parser.add_argument('--data_path', default='../data/etri/etri_raw_data/' + folder)
+    # parser.add_argument('--out_folder', default='../data/etri/etri_data/' + folder)
 
     # Local light
     # parser.add_argument('--data_path', default='../data/etri/etri_raw_data_light/')
