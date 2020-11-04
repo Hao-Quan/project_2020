@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2a1bc53-b630-4d0b-a210-7944a3dab932" name="Default Changelist" comment="" />
+    <list default="true" id="b2a1bc53-b630-4d0b-a210-7944a3dab932" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../master/SGN/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/.idea/webServers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../master/SGN/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../master/SGN/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../research_etri/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../research_etri/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +48,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ensemble" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyDebuggerOptionsProvider">
@@ -63,7 +67,7 @@
       <recent name="$PROJECT_DIR$/data/ntu_light" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.plot_confusion_matrix">
+  <component name="RunManager" selected="Python.main">
     <configuration name="ensemble" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="SGN-master" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -254,6 +258,7 @@
       <workItem from="1602499468909" duration="9879000" />
       <workItem from="1602659304181" duration="5476000" />
       <workItem from="1602683260204" duration="4550000" />
+      <workItem from="1604512440269" duration="148000" />
     </task>
     <servers />
   </component>

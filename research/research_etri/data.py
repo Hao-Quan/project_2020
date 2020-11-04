@@ -82,19 +82,15 @@ class NTUDataLoaders(object):
                 self.metric = 'CS'
             elif self.case == 1:
                 self.metric = 'CV'
-            # path = osp.join('./data/ntu', 'NTU_' + self.metric + '.h5')
+            #path = osp.join('./data/ntu', 'NTU_' + self.metric + '.h5')
 
             # WW
             # path = osp.join('/data/ntu', 'NTU_' + self.metric + '.h5')
-            # path = osp.join('/data/ntu_light', 'NTU_' + self.metric + '_extended_N_300_750' + '.h5')
-            # path = osp.join('/data/ntu/h5/xsub/')
 
             # Local PC
             # path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '.h5')
-            # path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '_extended_N_300_750' + '.h5')
-            path = osp.join('./data/ntu_light/h5/xsub/')
 
-        # H5 version
+        # TODO
         # f = h5py.File(path, 'r')
         # self.train_X = f['x'][:]
         # self.train_Y = np.argmax(f['y'][:],-1)
@@ -103,29 +99,6 @@ class NTUDataLoaders(object):
         # self.test_X = f['test_x'][:]
         # self.test_Y = np.argmax(f['test_y'][:], -1)
         # f.close()
-
-        # Westworld
-        # self.train_X = np.load(path + 'joint_distance/x_joint_and_distance.npy', mmap_mode='r')
-        # self.train_X = self.train_X.astype(np.float32)
-        # self.train_Y = np.load(path + 'y.npy', mmap_mode='r')
-        # self.val_X = np.load(path + 'joint_distance/valid_x_joint_and_distance.npy', mmap_mode='r')
-        # self.val_X = self.val_X.astype(np.float32)
-        # self.val_Y = np.load(path + 'valid_y.npy', mmap_mode='r')
-        # self.test_X = np.load(path + 'joint_distance/test_x_joint_and_distance.npy', mmap_mode='r')
-        # self.test_X = self.test_X.astype(np.float32)
-        # self.test_Y = np.load(path + 'test_y.npy', mmap_mode='r')
-
-        # Local
-        self.train_X = np.load(path + 'joint_distance/x_joint_and_distance.npy', mmap_mode='r')
-        self.train_X = self.train_X.astype(np.float32)
-        self.train_Y = np.load(path + 'y.npy', mmap_mode='r')
-        self.val_X = np.load(path + 'joint_distance/valid_x_joint_and_distance.npy', mmap_mode='r')
-        self.val_X = self.val_X.astype(np.float32)
-        self.val_Y = np.load(path + 'valid_y.npy', mmap_mode='r')
-        self.test_X = np.load(path + 'joint_distance/test_x_joint_and_distance.npy', mmap_mode='r')
-        self.test_X = self.test_X.astype(np.float32)
-        self.test_Y = np.load(path + 'test_y.npy', mmap_mode='r')
-
 
         ## Combine the training data and validation data togehter as ST-GCN
         self.train_X = np.concatenate([self.train_X, self.val_X], axis=0)
@@ -198,8 +171,7 @@ class NTUDataLoaders(object):
         for idx, seq in enumerate(joints):
             zero_row = []
             for i in range(len(seq)):
-                # if (seq[i, :] == np.zeros((1, 150))).all():
-                if (seq[i, :] == np.zeros((1, 750))).all():
+                if (seq[i, :] == np.zeros((1, 150))).all():
                         zero_row.append(i)
 
             seq = np.delete(seq, zero_row, axis = 0)
@@ -262,39 +234,13 @@ class AverageMeter(object):
 def turn_two_to_one(seq):
     new_seq = list()
     for idx, ske in enumerate(seq):
-        # if (ske[0:75] == np.zeros((1, 75))).all():
-        #     new_seq.append(ske[75:])
-        # elif (ske[75:] == np.zeros((1, 75))).all():
-        #     new_seq.append(ske[0:75])
-        # else:
-        #     new_seq.append(ske[0:75])
-        #     new_seq.append(ske[75:])
-
         if (ske[0:75] == np.zeros((1, 75))).all():
-            new_seq.append(ske[75:150])
-            new_seq.append(ske[450:525])
-            new_seq.append(ske[525:600])
-            new_seq.append(ske[600:675])
-            new_seq.append(ske[675:750])
-
-        elif (ske[75:150] == np.zeros((1, 75))).all():
+            new_seq.append(ske[75:])
+        elif (ske[75:] == np.zeros((1, 75))).all():
             new_seq.append(ske[0:75])
-            new_seq.append(ske[150:225])
-            new_seq.append(ske[225:300])
-            new_seq.append(ske[300:375])
-            new_seq.append(ske[375:450])
         else:
             new_seq.append(ske[0:75])
-            new_seq.append(ske[75:150])
-            new_seq.append(ske[150:225])
-            new_seq.append(ske[225:300])
-            new_seq.append(ske[300:375])
-            new_seq.append(ske[375:450])
-            new_seq.append(ske[450:525])
-            new_seq.append(ske[525:600])
-            new_seq.append(ske[600:675])
-            new_seq.append(ske[675:750])
-
+            new_seq.append(ske[75:])
     return np.array(new_seq)
 
 def _rot(rot):
