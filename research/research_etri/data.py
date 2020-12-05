@@ -89,16 +89,15 @@ class NTUDataLoaders(object):
 
             # Local PC
             # path = osp.join('./data/ntu_light', 'NTU_' + self.metric + '.h5')
+            path = osp.join('./data/etri/etri_data/A001_A005/xsub/')
 
         # TODO
-        # f = h5py.File(path, 'r')
-        # self.train_X = f['x'][:]
-        # self.train_Y = np.argmax(f['y'][:],-1)
-        # self.val_X = f['valid_x'][:]
-        # self.val_Y = np.argmax(f['valid_y'][:], -1)
-        # self.test_X = f['test_x'][:]
-        # self.test_Y = np.argmax(f['test_y'][:], -1)
-        # f.close()
+        self.train_X = np.load(path + 'train_data_joint_A001_A005_150.npy', mmap_mode='r')
+        self.train_X = self.train_X.astype(np.float32)
+        self.train_Y = np.load(path + 'train_label_A00.npy', mmap_mode='r')
+        self.val_X = np.load(path + 'joint_distance/valid_x_joint_and_distance.npy', mmap_mode='r')
+        self.val_X = self.val_X.astype(np.float32)
+        self.val_Y = np.load(path + 'valid_y.npy', mmap_mode='r')
 
         ## Combine the training data and validation data togehter as ST-GCN
         self.train_X = np.concatenate([self.train_X, self.val_X], axis=0)

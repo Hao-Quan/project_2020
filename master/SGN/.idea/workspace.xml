@@ -44,7 +44,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../research/research_distance_SGN_new" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="PyDebuggerOptionsProvider">
@@ -225,6 +225,7 @@
       <workItem from="1602255981788" duration="443000" />
       <workItem from="1602325483053" duration="9972000" />
       <workItem from="1604512391202" duration="48000" />
+      <workItem from="1604512940744" duration="1513000" />
     </task>
     <servers />
   </component>
@@ -248,10 +249,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="543" y="170" width="832" height="704" key="#SSH_Configurations/67.27.1853.1053@67.27.1853.1053" timestamp="1601391343257" />
-    <state x="247" y="292" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602338671868">
+    <state x="247" y="292" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604512973552">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="247" y="292" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1602338671868" />
+    <state x="247" y="292" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1604512973552" />
     <state width="961" height="506" key="DebuggerActiveHint" timestamp="1601728968670">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -260,38 +261,38 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="435" y="245" width="670" height="489" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1604512437883" />
-    <state width="981" height="307" key="GridCell.Tab.0.bottom" timestamp="1602346944625">
+    <state width="1807" height="266" key="GridCell.Tab.0.bottom" timestamp="1604514541417">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944625" />
-    <state width="981" height="307" key="GridCell.Tab.0.center" timestamp="1602346944625">
+    <state width="1807" height="266" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541417" />
+    <state width="1807" height="266" key="GridCell.Tab.0.center" timestamp="1604514541416">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944625" />
-    <state width="981" height="307" key="GridCell.Tab.0.left" timestamp="1602346944625">
+    <state width="1807" height="266" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541416" />
+    <state width="1807" height="266" key="GridCell.Tab.0.left" timestamp="1604514541416">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944625" />
-    <state width="981" height="307" key="GridCell.Tab.0.right" timestamp="1602346944625">
+    <state width="1807" height="266" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541416" />
+    <state width="1807" height="266" key="GridCell.Tab.0.right" timestamp="1604514541417">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944625" />
-    <state width="981" height="307" key="GridCell.Tab.1.bottom" timestamp="1602346944626">
+    <state width="1807" height="266" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541417" />
+    <state width="1807" height="266" key="GridCell.Tab.1.bottom" timestamp="1604514541417">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944626" />
-    <state width="981" height="307" key="GridCell.Tab.1.center" timestamp="1602346944625">
+    <state width="1807" height="266" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541417" />
+    <state width="1807" height="266" key="GridCell.Tab.1.center" timestamp="1604514541417">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944625" />
-    <state width="981" height="307" key="GridCell.Tab.1.left" timestamp="1602346944625">
+    <state width="1807" height="266" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541417" />
+    <state width="1807" height="266" key="GridCell.Tab.1.left" timestamp="1604514541417">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944625" />
-    <state width="981" height="307" key="GridCell.Tab.1.right" timestamp="1602346944625">
+    <state width="1807" height="266" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541417" />
+    <state width="1807" height="266" key="GridCell.Tab.1.right" timestamp="1604514541417">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="981" height="307" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1602346944625" />
+    <state width="1807" height="266" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1604514541417" />
     <state x="453" y="157" key="SettingsEditor" timestamp="1601391420076">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -400,7 +401,7 @@
     <SUITE FILE_PATH="coverage/SGN$get_raw_skes_data.coverage" NAME="get_raw_skes_data Coverage Results" MODIFIED="1601648143571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data/ntu" />
     <SUITE FILE_PATH="coverage/SGN$ntu_data_load.coverage" NAME="ntu_data_load Coverage Results" MODIFIED="1601718350457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/SGN_master$main.coverage" NAME="main Coverage Results" MODIFIED="1601192342125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SGN$main.coverage" NAME="main Coverage Results" MODIFIED="1602338693111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SGN$main.coverage" NAME="main Coverage Results" MODIFIED="1604513599873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/SGN$ntu_f5_to_numpy.coverage" NAME="ntu_f5_to_numpy Coverage Results" MODIFIED="1602245462342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data/scritp_process_data" />
   </component>
 </project>
